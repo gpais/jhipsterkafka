@@ -1,0 +1,102 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTransactionLabel" jhiTranslate="gatewayApp.transaction.home.createOrEditLabel">Create or edit a Transaction</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!transaction.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="transaction.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.transaction.retailerNo" for="field_retailerNo">Retailer No</label>
+            <input type="text" class="form-control" name="retailerNo" id="field_retailerNo"
+                [(ngModel)]="transaction.retailerNo"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.transaction.tfscNumber" for="field_tfscNumber">Tfsc Number</label>
+            <input type="text" class="form-control" name="tfscNumber" id="field_tfscNumber"
+                [(ngModel)]="transaction.tfscNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.transaction.voucherNo" for="field_voucherNo">Voucher No</label>
+            <input type="text" class="form-control" name="voucherNo" id="field_voucherNo"
+                [(ngModel)]="transaction.voucherNo"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.transaction.creditCardNo" for="field_creditCardNo">Credit Card No</label>
+            <input type="text" class="form-control" name="creditCardNo" id="field_creditCardNo"
+                [(ngModel)]="transaction.creditCardNo"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.transaction.creditCardExpiry" for="field_creditCardExpiry">Credit Card Expiry</label>
+            <input type="text" class="form-control" name="creditCardExpiry" id="field_creditCardExpiry"
+                [(ngModel)]="transaction.creditCardExpiry"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.transaction.purchaseDate" for="field_purchaseDate">Purchase Date</label>
+            <div class="d-flex">
+                <input id="field_purchaseDate" type="datetime-local" class="form-control" name="purchaseDate" [(ngModel)]="transaction.purchaseDate"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.transaction.purchaseTime" for="field_purchaseTime">Purchase Time</label>
+            <input type="text" class="form-control" name="purchaseTime" id="field_purchaseTime"
+                [(ngModel)]="transaction.purchaseTime"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.transaction.vatOff" for="field_vatOff">Vat Off</label>
+            <input type="text" class="form-control" name="vatOff" id="field_vatOff"
+                [(ngModel)]="transaction.vatOff"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.transaction.vatAmount" for="field_vatAmount">Vat Amount</label>
+            <input type="number" class="form-control" name="vatAmount" id="field_vatAmount"
+                [(ngModel)]="transaction.vatAmount"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.transaction.grossAmount" for="field_grossAmount">Gross Amount</label>
+            <input type="number" class="form-control" name="grossAmount" id="field_grossAmount"
+                [(ngModel)]="transaction.grossAmount"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.transaction.refundAmount" for="field_refundAmount">Refund Amount</label>
+            <input type="number" class="form-control" name="refundAmount" id="field_refundAmount"
+                [(ngModel)]="transaction.refundAmount"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.transaction.vatRate" for="field_vatRate">Vat Rate</label>
+            <input type="number" class="form-control" name="vatRate" id="field_vatRate"
+                [(ngModel)]="transaction.vatRate"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.transaction.status" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="transaction.status" id="field_status" >
+                <option value="NOT_MATCHED">{{'gatewayApp.TransactionStatus.NOT_MATCHED' | translate}}</option>
+                <option value="MATCHED">{{'gatewayApp.TransactionStatus.MATCHED' | translate}}</option>
+                <option value="SUSPENDED">{{'gatewayApp.TransactionStatus.SUSPENDED' | translate}}</option>
+                <option value="SETTLED">{{'gatewayApp.TransactionStatus.SETTLED' | translate}}</option>
+                <option value="REFUNDED">{{'gatewayApp.TransactionStatus.REFUNDED' | translate}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.transaction.reason" for="field_reason">Reason</label>
+            <input type="text" class="form-control" name="reason" id="field_reason"
+                [(ngModel)]="transaction.reason"  />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

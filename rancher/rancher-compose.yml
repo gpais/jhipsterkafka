@@ -1,0 +1,19 @@
+version: '2'
+services:
+    gateway-app:
+        scale: 1
+    transactionreceiver-app:
+        scale: 1
+
+    transactionsender-app:
+        scale: 1
+    uaa-app:
+        scale: 1
+    kafkaserver:
+        scale: 1
+    kafka_manager:
+        scale: 1
+    jhipster-registry:
+        scale: 1
+
+

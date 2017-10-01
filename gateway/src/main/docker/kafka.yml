@@ -1,0 +1,151 @@
+version: '2'
+services:
+    lb:
+      image: rancher/load-balancer-service
+      ports:
+        # Listen on public port 80 and direct traffic to private port 8080 of the service
+        - 80:8080
+      links:
+        # Target services in the same stack will be listed as a link
+        - gateway-app:gateway-app
+    gateway-app:
+        image: gpaishubid/gateway
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+            - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://gateway-postgresql:5432/gateway
+            - JHIPSTER_SLEEP=30
+            - SPRING_DB_USERNAME=gateway
+            - SPRING_DB_PASSWORD=password 
+            - SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafka
+            - SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=zookeeper
+            - JHIPSTER_REGISTRY_PASSWORD=admin
+        ports:
+            - 8080:8080
+    gateway-postgresql:
+        image: postgres:9.6.5
+        environment:
+            - POSTGRES_USER=gateway
+            - POSTGRES_PASSWORD=password
+    
+    transactionreceiver-app:
+        image: gpaishubid/transactionreceiver
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+            - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://transactionreceiver-postgresql:5432/transactionreceiver
+            - SPRING_DB_USERNAME=transactionreceiver
+            - SPRING_DB_PASSWORD=password
+            - JHIPSTER_SLEEP=30
+            - SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafka
+            - SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=zookeeper
+            - JHIPSTER_REGISTRY_PASSWORD=admin
+    transactionreceiver-postgresql:
+        image: postgres:9.6.5
+        environment:
+            - POSTGRES_USER=transactionreceiver
+            - POSTGRES_PASSWORD=password
+    
+    transactionsender-app:
+        image: gpaishubid/transactionsender
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+            - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://transactionsender-postgresql:5432/transactionsender
+            - SPRING_DB_USERNAME=transactionsender
+            - SPRING_DB_PASSWORD=password
+            - JHIPSTER_SLEEP=30
+            - SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafka
+            - SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=zookeeper
+            - JHIPSTER_REGISTRY_PASSWORD=admin
+    transactionsender-postgresql:
+        image: postgres:9.6.5
+        environment:
+            - POSTGRES_USER=transactionsender
+            - POSTGRES_PASSWORD=password
+    
+    uaa-app:
+        image: gpaishubid/uaa
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+            - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://uaa-postgresql:5432/uaa
+            - SPRING_DB_USERNAME=uaa
+            - SPRING_DB_PASSWORD=password
+            - JHIPSTER_SLEEP=30
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=uaa-elasticsearch:9300
+            - SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafka
+            - SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=zookeeper
+            - JHIPSTER_REGISTRY_PASSWORD=admin
+    uaa-postgresql:
+        image: postgres:9.6.5
+        environment:
+            - POSTGRES_USER=uaa
+            - POSTGRES_PASSWORD=password
+    uaa-elasticsearch:
+        image: elasticsearch:2.4.1
+    kafkaserver:
+      image: "spotify/kafka:latest"
+      container_name: kafka
+      hostname: kafkaserver
+      networks:
+        - kafkanet
+      ports:
+        - 2181:2181
+        - 9092:9092
+      environment:
+        ADVERTISED_HOST: kafkaserver
+        ADVERTISED_PORT: 9092
+    kafka_manager:
+      image: "mzagar/kafka-manager-docker:1.3.3.4"
+      container_name: kafkamanager
+      networks:
+        - kafkanet
+      ports:
+        - 9000:9000
+      links:
+        - kafkaserver
+      environment:
+        ZK_HOSTS: "kafkaserver:2181"
+
+networks:
+  kafkanet:
+    driver: bridge
+    jhipster-registry:
+        image: jhipster/jhipster-registry:v3.1.2
+        #volumes:
+        #    - ./central-server-config:/central-config
+        # By default the JHipster Registry runs with the "prod" and "native"
+        # Spring profiles.
+        # "native" profile means the filesystem is used to store data, see
+        # http://cloud.spring.io/spring-cloud-config/spring-cloud-config.html
+        environment:
+            - SPRING_PROFILES_ACTIVE=dev,native
+            - SECURITY_USER_PASSWORD=admin
+            - SPRING_CLOUD_CONFIG_SERVER_NATIVE_SEARCH_LOCATIONS=file:./config/
+            # Uncomment to use a Git configuration source instead of the local filesystem
+            # mounted from the registry-config-sidekick volume
+            # - GIT_URI=https://github.com/jhipster/jhipster-registry/
+            # - GIT_SEARCH_PATHS=central-config
+        ports:
+            - 8761:8761
+        volumes:
+          - /config
+        volumes_from:
+          - registry-config-sidekick
+        labels:
+          io.rancher.sidekicks: registry-config-sidekick
+    registry-config-sidekick:
+        # this docker image must be built with:
+        # docker build -t gpaishubid/registry-config-sidekick registry-config-sidekick
+        image: gpaishubid/registry-config-sidekick
+        tty: true
+        stdin_open: true
+        command:
+          - cat
+        volumes:
+          - config:/config

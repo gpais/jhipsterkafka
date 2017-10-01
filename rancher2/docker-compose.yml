@@ -1,0 +1,84 @@
+version: '2'
+services:
+    jhipster-registry:
+        image: jhipster/jhipster-registry:v3.1.2
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,native
+            - SECURITY_USER_PASSWORD=admin
+        ports:
+            - 8761:8761
+    transactionsconsumer:
+        image: gpaishubid/transactionsconsumer
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://transaction-postgresql:5432/transaction
+            - JHIPSTER_SLEEP=30
+            - SPRING_DB_USERNAME=transaction
+            - SPRING_DB_PASSWORD=password 
+            - SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafkaserver
+            - SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=kafkaserver
+            - JHIPSTER_REGISTRY_PASSWORD=admin
+    transaction-postgresql:
+        image: postgres:9.6.5
+        environment:
+            - POSTGRES_USER=transaction
+            - POSTGRES_PASSWORD=password
+    transactionsender:
+        image: gpaishubid/transactionsender
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - JHIPSTER_SLEEP=30
+            - SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafkaserver
+            - SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=kafkaserver
+            - JHIPSTER_REGISTRY_PASSWORD=admin
+    uaa-postgresql:
+        image: postgres:9.6.5
+        environment:
+            - POSTGRES_DB=uaa
+            - POSTGRES_USER=uaa
+            - POSTGRES_PASSWORD=password
+    uaa-app:
+        image: gpaishubid/uaa
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+            - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://uaa-postgresql:5432/uaa
+            - SPRING_DB_USERNAME=uaa
+            - SPRING_DB_PASSWORD=password
+            - JHIPSTER_SLEEP=30
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=uaa-elasticsearch:9300
+            - SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafkaserver
+            - SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=kafkaserver
+            - JHIPSTER_REGISTRY_PASSWORD=admin
+        links:
+           - uaa-postgresql:uaa-postgresql
+
+    kafkaserver:
+      image: spotify/kafka:latest
+      hostname: kafkaserver
+      ports:
+        - 2181:2181
+        - 9092:9092
+      environment:
+        ADVERTISED_HOST: kafkaserver
+        ADVERTISED_PORT: 9092
+    gateway-app:
+        image: gpaishubid/gateway
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+            - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://gateway-postgresql:5432/gateway
+            - SPRING_DATASOURCE_URL
+            - JHIPSTER_SLEEP=30
+            - SPRING_DB_USERNAME=gateway
+            - SPRING_DB_PASSWORD=password 
+            - SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafkaserver
+            - SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=kafkaserver
+            - JHIPSTER_REGISTRY_PASSWORD=admin
+            - MAX_TOTAL_CONNECTIONS_PER_ROUTE=1000
+            - MAX_CONNECTIONS_PER_ROUTE=100
+            - MAX_SEMAPHORES=500
+        ports:
+            - 8080:8080

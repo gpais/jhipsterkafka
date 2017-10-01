@@ -1,0 +1,38 @@
+{
+    "gatewayApp": {
+        "transaction" : {
+            "home": {
+                "title": "Transactions",
+                "createLabel": "Create a new Transaction",
+                "createOrEditLabel": "Create or edit a Transaction"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Transaction {{ id }}?"
+            },
+            "detail": {
+                "title": "Transaction"
+            },
+            "retailerNo": "Retailer No",
+            "tfscNumber": "Tfsc Number",
+            "voucherNo": "Voucher No",
+            "creditCardNo": "Credit Card No",
+            "creditCardExpiry": "Credit Card Expiry",
+            "purchaseDate": "Purchase Date",
+            "purchaseTime": "Purchase Time",
+            "vatOff": "Vat Off",
+            "vatAmount": "Vat Amount",
+            "grossAmount": "Gross Amount",
+            "refundAmount": "Refund Amount",
+            "vatRate": "Vat Rate",
+            "status": "Status",
+            "reason": "Reason"
+        }
+    },
+    "transactionsApp": {
+        "transaction" : {
+            "created": "A new Transaction is created with identifier {{ param }}",
+            "updated": "A Transaction is updated with identifier {{ param }}",
+            "deleted": "A Transaction is deleted with identifier {{ param }}"
+        }
+    }
+}

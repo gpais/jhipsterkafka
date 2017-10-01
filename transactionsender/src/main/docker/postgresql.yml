@@ -1,0 +1,11 @@
+version: '2'
+services:
+    transactionsender-postgresql:
+        image: postgres:9.6.5
+        # volumes:
+        #     - ~/volumes/jhipster/transactionsender/postgresql/:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=transactionsender
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432

@@ -1,0 +1,77 @@
+
+<div *ngIf="transaction">
+    <h2><span jhiTranslate="gatewayApp.transaction.detail.title">Transaction</span> {{transaction.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="gatewayApp.transaction.retailerNo">Retailer No</span></dt>
+        <dd>
+            <span>{{transaction.retailerNo}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.transaction.tfscNumber">Tfsc Number</span></dt>
+        <dd>
+            <span>{{transaction.tfscNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.transaction.voucherNo">Voucher No</span></dt>
+        <dd>
+            <span>{{transaction.voucherNo}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.transaction.creditCardNo">Credit Card No</span></dt>
+        <dd>
+            <span>{{transaction.creditCardNo}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.transaction.creditCardExpiry">Credit Card Expiry</span></dt>
+        <dd>
+            <span>{{transaction.creditCardExpiry}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.transaction.purchaseDate">Purchase Date</span></dt>
+        <dd>
+            <span>{{transaction.purchaseDate | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.transaction.purchaseTime">Purchase Time</span></dt>
+        <dd>
+            <span>{{transaction.purchaseTime}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.transaction.vatOff">Vat Off</span></dt>
+        <dd>
+            <span>{{transaction.vatOff}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.transaction.vatAmount">Vat Amount</span></dt>
+        <dd>
+            <span>{{transaction.vatAmount}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.transaction.grossAmount">Gross Amount</span></dt>
+        <dd>
+            <span>{{transaction.grossAmount}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.transaction.refundAmount">Refund Amount</span></dt>
+        <dd>
+            <span>{{transaction.refundAmount}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.transaction.vatRate">Vat Rate</span></dt>
+        <dd>
+            <span>{{transaction.vatRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.transaction.status">Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'gatewayApp.TransactionStatus.' + transaction.status}}">{{transaction.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.transaction.reason">Reason</span></dt>
+        <dd>
+            <span>{{transaction.reason}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'transaction/'+ transaction.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

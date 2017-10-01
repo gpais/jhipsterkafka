@@ -1,0 +1,28 @@
+
+
+enum TransactionStatus {
+    NOT_MATCHED, MATCHED, SUSPENDED,SETTLED,REFUNDED
+}
+
+entity Transaction{
+	retailerNo       String   
+	tfscNumber       String   
+	voucherNo        String
+	creditCardNo     String 
+	creditCardExpiry String
+	purchaseDate     ZonedDateTime
+	purchaseTime     String
+	vatOff           String
+	uuid           String
+    vatAmount    Double  
+    grossAmount  Double  
+    refundAmount Double          
+    vatRate      Double
+    status       TransactionStatus
+    reason       String
+}
+
+
+
+
+microservice * with transactions

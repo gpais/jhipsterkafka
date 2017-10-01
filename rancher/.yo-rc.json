@@ -1,0 +1,18 @@
+{
+  "generator-jhipster": {
+    "appsFolders": [
+      "gateway",
+      "transactionreceiver",
+      "transactionsender",
+      "uaa"
+    ],
+    "directoryPath": "../",
+    "monitoring": "no",
+    "serviceDiscoveryType": "eureka",
+    "adminPassword": "admin",
+    "jwtSecretKey": "7dde0cc403b56297795dc6002b28ffe8528c2c9c",
+    "dockerRepositoryName": "gpaishubid",
+    "dockerPushCommand": "docker push",
+    "enableRancherLoadBalancing": false
+  }
+}

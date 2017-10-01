@@ -1,0 +1,12 @@
+{
+    "gatewayApp": {
+        "TransactionStatus" : {
+            "null": "",
+            "NOT_MATCHED": "NOT_MATCHED",
+            "MATCHED": "MATCHED",
+            "SUSPENDED": "SUSPENDED",
+            "SETTLED": "SETTLED",
+            "REFUNDED": "REFUNDED"
+        }
+    }
+}

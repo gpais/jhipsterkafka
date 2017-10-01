@@ -1,0 +1,43 @@
+version: '2'
+services:
+    lb:
+        # load balancer container
+        scale: 1
+        load_balancer_config:
+          name: lb config
+        health_check:
+          port: 42
+          interval: 2000
+          unhealthy_threshold: 3
+          healthy_threshold: 2
+          response_timeout: 2000
+    kafkaserver:
+        scale: 1
+    gateway-app:
+        scale: 1
+    gateway-postgresql:
+        scale: 1
+    
+    transactionreceiver-app:
+        scale: 1
+    transactionreceiver-postgresql:
+        scale: 1
+    
+    transactionsender-app:
+        scale: 1
+    transactionsender-postgresql:
+        scale: 1
+
+
+    uaa-app:
+        scale: 1
+
+    uaa-postgresql:
+        scale: 1
+    uaa-elasticsearch:
+        scale: 1
+
+    jhipster-registry:
+        scale: 1
+
+

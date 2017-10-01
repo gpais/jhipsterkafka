@@ -1,0 +1,82 @@
+<div>
+    <h2>
+        <span jhiTranslate="gatewayApp.transaction.home.title">Transactions</span>
+        <button class="btn btn-primary float-right jh-create-entity create-transaction" [routerLink]="['/', { outlets: { popup: ['transaction-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="gatewayApp.transaction.home.createLabel">
+            Create new Transaction
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="transactions">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="gatewayApp.transaction.retailerNo">Retailer No</span></th>
+            <th><span jhiTranslate="gatewayApp.transaction.tfscNumber">Tfsc Number</span></th>
+            <th><span jhiTranslate="gatewayApp.transaction.voucherNo">Voucher No</span></th>
+            <th><span jhiTranslate="gatewayApp.transaction.creditCardNo">Credit Card No</span></th>
+            <th><span jhiTranslate="gatewayApp.transaction.creditCardExpiry">Credit Card Expiry</span></th>
+            <th><span jhiTranslate="gatewayApp.transaction.purchaseDate">Purchase Date</span></th>
+            <th><span jhiTranslate="gatewayApp.transaction.purchaseTime">Purchase Time</span></th>
+            <th><span jhiTranslate="gatewayApp.transaction.vatOff">Vat Off</span></th>
+            <th><span jhiTranslate="gatewayApp.transaction.vatAmount">Vat Amount</span></th>
+            <th><span jhiTranslate="gatewayApp.transaction.grossAmount">Gross Amount</span></th>
+            <th><span jhiTranslate="gatewayApp.transaction.refundAmount">Refund Amount</span></th>
+            <th><span jhiTranslate="gatewayApp.transaction.vatRate">Vat Rate</span></th>
+            <th><span jhiTranslate="gatewayApp.transaction.status">Status</span></th>
+            <th><span jhiTranslate="gatewayApp.transaction.reason">Reason</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let transaction of transactions ;trackBy: trackId">
+                <td><a [routerLink]="['../transaction', transaction.id ]">{{transaction.id}}</a></td>
+                <td>{{transaction.retailerNo}}</td>
+                <td>{{transaction.tfscNumber}}</td>
+                <td>{{transaction.voucherNo}}</td>
+                <td>{{transaction.creditCardNo}}</td>
+                <td>{{transaction.creditCardExpiry}}</td>
+                <td>{{transaction.purchaseDate | date:'medium'}}</td>
+                <td>{{transaction.purchaseTime}}</td>
+                <td>{{transaction.vatOff}}</td>
+                <td>{{transaction.vatAmount}}</td>
+                <td>{{transaction.grossAmount}}</td>
+                <td>{{transaction.refundAmount}}</td>
+                <td>{{transaction.vatRate}}</td>
+                <td jhiTranslate="{{'gatewayApp.TransactionStatus.' + transaction.status}}">{{transaction.status}}</td>
+                <td>{{transaction.reason}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../transaction', transaction.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'transaction/'+ transaction.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'transaction/'+ transaction.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
