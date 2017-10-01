@@ -2,9 +2,20 @@ version: '2'
 services:
     jhipster-registry:
         image: jhipster/jhipster-registry:v3.1.2
+        #volumes:
+        #    - ./central-server-config:/central-config
+        # By default the JHipster Registry runs with the "prod" and "native"
+        # Spring profiles.
+        # "native" profile means the filesystem is used to store data, see
+        # http://cloud.spring.io/spring-cloud-config/spring-cloud-config.html
         environment:
-            - SPRING_PROFILES_ACTIVE=prod,native
+            - SPRING_PROFILES_ACTIVE=dev,native
             - SECURITY_USER_PASSWORD=admin
+            - SPRING_CLOUD_CONFIG_SERVER_NATIVE_SEARCH_LOCATIONS=file:./config/
+            # Uncomment to use a Git configuration source instead of the local filesystem
+            # mounted from the registry-config-sidekick volume
+            # - GIT_URI=https://github.com/jhipster/jhipster-registry/
+            # - GIT_SEARCH_PATHS=central-config
         ports:
             - 8761:8761
     transactionsconsumer:
@@ -37,6 +48,8 @@ services:
             - POSTGRES_DB=uaa
             - POSTGRES_USER=uaa
             - POSTGRES_PASSWORD=password
+        ports:
+            - 5432:5432
     uaa-app:
         image: gpaishubid/uaa
         environment:
