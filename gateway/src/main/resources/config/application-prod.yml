@@ -20,6 +20,7 @@ eureka:
         service-url:
             defaultZone: http://admin:${jhipster.registry.password}@localhost:8761/eureka/
 zuul: # those values must be configured depending on the application specific needs
+    ribbon-isolation-strategy: ${RIBBON_ISOLATION_STRATEGY}
     host:
         max-total-connections: ${MAX_TOTAL_CONNECTIONS_PER_ROUTE}
         max-per-route-connections: ${MAX_CONNECTIONS_PER_ROUTE}
