@@ -19,6 +19,7 @@ entity Transaction{
     vatRate      Double
     status       TransactionStatus
     reason       String
+    uuid       String
 }
 
 

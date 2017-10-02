@@ -68,6 +68,9 @@ public class Transaction implements Serializable {
     @Column(name = "reason")
     private String reason;
 
+    @Column(name = "uuid")
+    private String uuid;
+
     // jhipster-needle-entity-add-field - Jhipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -258,6 +261,19 @@ public class Transaction implements Serializable {
     public void setReason(String reason) {
         this.reason = reason;
     }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public Transaction uuid(String uuid) {
+        this.uuid = uuid;
+        return this;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
     // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
 
     @Override
@@ -298,6 +314,7 @@ public class Transaction implements Serializable {
             ", vatRate='" + getVatRate() + "'" +
             ", status='" + getStatus() + "'" +
             ", reason='" + getReason() + "'" +
+            ", uuid='" + getUuid() + "'" +
             "}";
     }
 }

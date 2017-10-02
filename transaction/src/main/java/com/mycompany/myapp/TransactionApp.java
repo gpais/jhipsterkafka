@@ -1,5 +1,6 @@
 package com.mycompany.myapp;
 
+import com.mycompany.myapp.client.OAuth2InterceptedFeignConfiguration;
 import com.mycompany.myapp.config.ApplicationProperties;
 import com.mycompany.myapp.config.DefaultProfileUtil;
 
@@ -16,7 +17,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.core.env.Environment;
-import org.springframework.scheduling.annotation.EnableAsync;
 
 import javax.annotation.PostConstruct;
 import java.net.InetAddress;
@@ -24,11 +24,12 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
 
-
+@ComponentScan(
+    excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = OAuth2InterceptedFeignConfiguration.class)
+)
 @EnableAutoConfiguration(exclude = {MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class})
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
 @EnableDiscoveryClient
-@EnableAsync
 public class TransactionApp {
 
     private static final Logger log = LoggerFactory.getLogger(TransactionApp.class);

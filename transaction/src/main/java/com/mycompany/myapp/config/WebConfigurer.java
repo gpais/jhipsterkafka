@@ -3,6 +3,9 @@ package com.mycompany.myapp.config;
 import io.github.jhipster.config.JHipsterConstants;
 import io.github.jhipster.config.JHipsterProperties;
 
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.servlet.InstrumentedFilter;
+import com.codahale.metrics.servlets.MetricsServlet;
 import com.hazelcast.core.HazelcastInstance;
 
 import org.slf4j.Logger;
@@ -36,6 +39,7 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
 
     private final HazelcastInstance hazelcastInstance;
 
+    private MetricRegistry metricRegistry;
 
     public WebConfigurer(Environment env, JHipsterProperties jHipsterProperties, HazelcastInstance hazelcastInstance) {
 
@@ -51,9 +55,6 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
         }
         EnumSet<DispatcherType> disps = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.ASYNC);
         initMetrics(servletContext, disps);
-        if (env.acceptsProfiles(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT)) {
-            initH2Console(servletContext);
-        }
         log.info("Web application fully configured");
     }
 
@@ -87,7 +88,28 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
     /**
      * Initializes Metrics.
      */
-    private void initMetrics(ServletContext servletContext, EnumSet<DispatcherType> disps) {}
+    private void initMetrics(ServletContext servletContext, EnumSet<DispatcherType> disps) {
+        log.debug("Initializing Metrics registries");
+        servletContext.setAttribute(InstrumentedFilter.REGISTRY_ATTRIBUTE,
+            metricRegistry);
+        servletContext.setAttribute(MetricsServlet.METRICS_REGISTRY,
+            metricRegistry);
+
+        log.debug("Registering Metrics Filter");
+        FilterRegistration.Dynamic metricsFilter = servletContext.addFilter("webappMetricsFilter",
+            new InstrumentedFilter());
+
+        metricsFilter.addMappingForUrlPatterns(disps, true, "/*");
+        metricsFilter.setAsyncSupported(true);
+
+        log.debug("Registering Metrics Servlet");
+        ServletRegistration.Dynamic metricsAdminServlet =
+            servletContext.addServlet("metricsServlet", new MetricsServlet());
+
+        metricsAdminServlet.addMapping("/management/metrics/*");
+        metricsAdminServlet.setAsyncSupported(true);
+        metricsAdminServlet.setLoadOnStartup(2);
+    }
 
     @Bean
     public CorsFilter corsFilter() {
@@ -101,16 +123,8 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
         return new CorsFilter(source);
     }
 
-    /**
-     * Initializes H2 console.
-     */
-    private void initH2Console(ServletContext servletContext) {
-        log.debug("Initialize H2 console");
-        ServletRegistration.Dynamic h2ConsoleServlet = servletContext.addServlet("H2Console", new org.h2.server.web.WebServlet());
-        h2ConsoleServlet.addMapping("/h2-console/*");
-        h2ConsoleServlet.setInitParameter("-properties", "src/main/resources/");
-        h2ConsoleServlet.setLoadOnStartup(1);
+    @Autowired(required = false)
+    public void setMetricRegistry(MetricRegistry metricRegistry) {
+        this.metricRegistry = metricRegistry;
     }
-
-  
 }

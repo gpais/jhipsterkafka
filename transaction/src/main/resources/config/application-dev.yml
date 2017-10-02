@@ -21,6 +21,12 @@ eureka:
             defaultZone: http://admin:${jhipster.registry.password}@localhost:8761/eureka/
 
 spring:
+    http:
+     multipart:
+      enabled: true
+      file-size-threshold: 600KB
+      max-file-size: 600KB
+      max-request-size: 600KB
     profiles:
         active: dev
         include: swagger
@@ -31,31 +37,14 @@ spring:
             enabled: false # we use gulp + BrowserSync for livereload
     jackson:
         serialization.indent_output: true
-    cloud:
-        stream:
-            kafka:
-                binder:
-                    headers: correlation_id
-                    brokers: 192.168.99.100
-                    zk-nodes: 192.168.99.100
-            bindings:
-               messageChannel:
-                   destination: greetings
-                   content-type: application/json
-               subscribableChannel:
-                destination: greetings
-
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:file:./target/h2db/db/transaction;DB_CLOSE_DELAY=-1
+        url: jdbc:postgresql://192.168.99.100:5432/transaction
         username: transaction
-        password:
-    h2:
-        console:
-            enabled: false
+        password: password
     jpa:
-        database-platform: io.github.jhipster.domain.util.FixedH2Dialect
-        database: H2
+        database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
+        database: POSTGRESQL
         show-sql: true
         properties:
             hibernate.id.new_generator_mappings: true

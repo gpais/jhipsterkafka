@@ -18,8 +18,8 @@ public class ConsumerService {
     private TransactionRepository repo;
     
     @StreamListener(ConsumerChannel.CHANNEL)
-    public void consume(Transaction transaction) {
-        log.info("Transaction received message: {}.",transaction.getUuid());
-        repo.save(transaction);
+    public void consume(String transaction) {
+        log.info("Transaction received message: {}.",transaction);
+//        repo.save(transaction);
     }
 }

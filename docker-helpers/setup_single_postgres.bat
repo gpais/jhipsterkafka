@@ -23,4 +23,9 @@ docker exec -it -e PGPASSWORD=password postgresDB psql -U postgres  -c "CREATE D
 docker exec -it -e PGPASSWORD=password postgresDB psql -U postgres -c "CREATE USER transactionsender; GRANT ALL PRIVILEGES ON DATABASE transactionsender TO transactionsender; ALTER USER transactionsender WITH PASSWORD 'password'; "
 
 
+docker exec -it -e PGPASSWORD=password postgresDB psql -U postgres  -c "CREATE DATABASE transaction"
+docker exec -it -e PGPASSWORD=password postgresDB psql -U postgres -c "CREATE USER transaction; GRANT ALL PRIVILEGES ON DATABASE transaction TO transaction; ALTER USER transaction WITH PASSWORD 'password'; "
+
+
+
 pause

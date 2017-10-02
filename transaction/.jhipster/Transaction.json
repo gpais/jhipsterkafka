@@ -58,9 +58,13 @@
         {
             "fieldName": "reason",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "uuid",
+            "fieldType": "String"
         }
     ],
-    "changelogDate": "20170927124054",
+    "changelogDate": "20171002095634",
     "entityTableName": "transaction",
     "dto": "no",
     "pagination": "no",

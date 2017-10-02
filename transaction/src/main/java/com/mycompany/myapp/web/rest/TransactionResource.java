@@ -1,5 +1,6 @@
 package com.mycompany.myapp.web.rest;
 
+import com.codahale.metrics.annotation.Timed;
 import com.mycompany.myapp.domain.Transaction;
 
 import com.mycompany.myapp.repository.TransactionRepository;
@@ -41,6 +42,7 @@ public class TransactionResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/transactions")
+    @Timed
     public ResponseEntity<Transaction> createTransaction(@RequestBody Transaction transaction) throws URISyntaxException {
         log.debug("REST request to save Transaction : {}", transaction);
         if (transaction.getId() != null) {
@@ -62,6 +64,7 @@ public class TransactionResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/transactions")
+    @Timed
     public ResponseEntity<Transaction> updateTransaction(@RequestBody Transaction transaction) throws URISyntaxException {
         log.debug("REST request to update Transaction : {}", transaction);
         if (transaction.getId() == null) {
@@ -79,6 +82,7 @@ public class TransactionResource {
      * @return the ResponseEntity with status 200 (OK) and the list of transactions in body
      */
     @GetMapping("/transactions")
+    @Timed
     public List<Transaction> getAllTransactions() {
         log.debug("REST request to get all Transactions");
         return transactionRepository.findAll();
@@ -91,6 +95,7 @@ public class TransactionResource {
      * @return the ResponseEntity with status 200 (OK) and with body the transaction, or with status 404 (Not Found)
      */
     @GetMapping("/transactions/{id}")
+    @Timed
     public ResponseEntity<Transaction> getTransaction(@PathVariable Long id) {
         log.debug("REST request to get Transaction : {}", id);
         Transaction transaction = transactionRepository.findOne(id);
@@ -104,6 +109,7 @@ public class TransactionResource {
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/transactions/{id}")
+    @Timed
     public ResponseEntity<Void> deleteTransaction(@PathVariable Long id) {
         log.debug("REST request to delete Transaction : {}", id);
         transactionRepository.delete(id);

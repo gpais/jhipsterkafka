@@ -15,10 +15,9 @@
     "clusteredHttpSession": false,
     "websocket": false,
     "databaseType": "sql",
-    "devDatabaseType": "h2Disk",
+    "devDatabaseType": "postgresql",
     "prodDatabaseType": "postgresql",
     "searchEngine": false,
-    "messageBroker": "kafka",
     "serviceDiscoveryType": "eureka",
     "buildTool": "maven",
     "enableSocialSignIn": false,
@@ -34,6 +33,7 @@
     "languages": [
       "en"
     ],
-    "clientPackageManager": "yarn"
+    "clientPackageManager": "yarn",
+    "messageBroker": false
   }
 }
