@@ -1,0 +1,39 @@
+{
+    "gatewayApp": {
+        "retailers" : {
+            "home": {
+                "title": "Retailers",
+                "createLabel": "Create a new Retailers",
+                "createOrEditLabel": "Create or edit a Retailers"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Retailers {{ id }}?"
+            },
+            "detail": {
+                "title": "Retailers"
+            },
+            "retailerNo": "Retailer No",
+            "name": "Name",
+            "phone": "Phone",
+            "contact1": "Contact 1",
+            "contact2": "Contact 2",
+            "contact3": "Contact 3",
+            "contact4": "Contact 4",
+            "contact5": "Contact 5",
+            "taxAmount": "Tax Amount",
+            "minTaxAmount": "Min Tax Amount",
+            "email": "Email",
+            "vatNo": "Vat No",
+            "location": "Location",
+            "transactions": "Transactions",
+            "commissions": "Commissions"
+        }
+    },
+    "retailersApp": {
+        "retailers" : {
+            "created": "A new Retailers is created with identifier {{ param }}",
+            "updated": "A Retailers is updated with identifier {{ param }}",
+            "deleted": "A Retailers is deleted with identifier {{ param }}"
+        }
+    }
+}

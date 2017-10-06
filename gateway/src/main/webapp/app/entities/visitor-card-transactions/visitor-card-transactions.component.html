@@ -1,0 +1,96 @@
+<div>
+    <h2>
+        <span jhiTranslate="gatewayApp.visitorCardTransactions.home.title">Visitor Card Transactions</span>
+        <button class="btn btn-primary float-right jh-create-entity create-visitor-card-transactions" [routerLink]="['/', { outlets: { popup: ['visitor-card-transactions-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="gatewayApp.visitorCardTransactions.home.createLabel">
+            Create new Visitor Card Transactions
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="visitorCardTransactions">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="retailerNo"><span jhiTranslate="gatewayApp.visitorCardTransactions.retailerNo">Retailer No</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tfscNumber"><span jhiTranslate="gatewayApp.visitorCardTransactions.tfscNumber">Tfsc Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="voucherNo"><span jhiTranslate="gatewayApp.visitorCardTransactions.voucherNo">Voucher No</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="creditCardNo"><span jhiTranslate="gatewayApp.visitorCardTransactions.creditCardNo">Credit Card No</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="creditCardExpiry"><span jhiTranslate="gatewayApp.visitorCardTransactions.creditCardExpiry">Credit Card Expiry</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="purchaseTime"><span jhiTranslate="gatewayApp.visitorCardTransactions.purchaseTime">Purchase Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="vatOff"><span jhiTranslate="gatewayApp.visitorCardTransactions.vatOff">Vat Off</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="vatAmount"><span jhiTranslate="gatewayApp.visitorCardTransactions.vatAmount">Vat Amount</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="grossAmount"><span jhiTranslate="gatewayApp.visitorCardTransactions.grossAmount">Gross Amount</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="refundAmount"><span jhiTranslate="gatewayApp.visitorCardTransactions.refundAmount">Refund Amount</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="vatRate"><span jhiTranslate="gatewayApp.visitorCardTransactions.vatRate">Vat Rate</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="status"><span jhiTranslate="gatewayApp.visitorCardTransactions.status">Status</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="reason"><span jhiTranslate="gatewayApp.visitorCardTransactions.reason">Reason</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="uuid"><span jhiTranslate="gatewayApp.visitorCardTransactions.uuid">Uuid</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="visitorCard.id"><span jhiTranslate="gatewayApp.visitorCardTransactions.visitorCard">Visitor Card</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let visitorCardTransactions of visitorCardTransactions ;trackBy: trackId">
+                <td><a [routerLink]="['../visitor-card-transactions', visitorCardTransactions.id ]">{{visitorCardTransactions.id}}</a></td>
+                <td>{{visitorCardTransactions.retailerNo}}</td>
+                <td>{{visitorCardTransactions.tfscNumber}}</td>
+                <td>{{visitorCardTransactions.voucherNo}}</td>
+                <td>{{visitorCardTransactions.creditCardNo}}</td>
+                <td>{{visitorCardTransactions.creditCardExpiry}}</td>
+                <td>{{visitorCardTransactions.purchaseTime}}</td>
+                <td>{{visitorCardTransactions.vatOff}}</td>
+                <td>{{visitorCardTransactions.vatAmount}}</td>
+                <td>{{visitorCardTransactions.grossAmount}}</td>
+                <td>{{visitorCardTransactions.refundAmount}}</td>
+                <td>{{visitorCardTransactions.vatRate}}</td>
+                <td jhiTranslate="{{'gatewayApp.TransactionStatus.' + visitorCardTransactions.status}}">{{visitorCardTransactions.status}}</td>
+                <td>{{visitorCardTransactions.reason}}</td>
+                <td>{{visitorCardTransactions.uuid}}</td>
+                <td>
+                    <div *ngIf="visitorCardTransactions.visitorCard">
+                        <a [routerLink]="['../visitor-card', visitorCardTransactions.visitorCard?.id ]" >{{visitorCardTransactions.visitorCard?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../visitor-card-transactions', visitorCardTransactions.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'visitor-card-transactions/'+ visitorCardTransactions.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'visitor-card-transactions/'+ visitorCardTransactions.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="visitorCardTransactions && visitorCardTransactions.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

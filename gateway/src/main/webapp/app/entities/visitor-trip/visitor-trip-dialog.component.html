@@ -1,0 +1,114 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myVisitorTripLabel" jhiTranslate="gatewayApp.visitorTrip.home.createOrEditLabel">Create or edit a Visitor Trip</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!visitorTrip.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="visitorTrip.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitorTrip.locationCode" for="field_locationCode">Location Code</label>
+            <input type="text" class="form-control" name="locationCode" id="field_locationCode"
+                [(ngModel)]="visitorTrip.locationCode"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitorTrip.dateEntry" for="field_dateEntry">Date Entry</label>
+            <div class="d-flex">
+                <input id="field_dateEntry" type="datetime-local" class="form-control" name="dateEntry" [(ngModel)]="visitorTrip.dateEntry"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitorTrip.dateExit" for="field_dateExit">Date Exit</label>
+            <div class="d-flex">
+                <input id="field_dateExit" type="datetime-local" class="form-control" name="dateExit" [(ngModel)]="visitorTrip.dateExit"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitorTrip.flightNumber" for="field_flightNumber">Flight Number</label>
+            <input type="text" class="form-control" name="flightNumber" id="field_flightNumber"
+                [(ngModel)]="visitorTrip.flightNumber" required />
+            <div [hidden]="!(editForm.controls.flightNumber?.dirty && editForm.controls.flightNumber?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.flightNumber?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitorTrip.creditCardType" for="field_creditCardType">Credit Card Type</label>
+            <input type="text" class="form-control" name="creditCardType" id="field_creditCardType"
+                [(ngModel)]="visitorTrip.creditCardType" required />
+            <div [hidden]="!(editForm.controls.creditCardType?.dirty && editForm.controls.creditCardType?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.creditCardType?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitorTrip.creditCardToken" for="field_creditCardToken">Credit Card Token</label>
+            <input type="text" class="form-control" name="creditCardToken" id="field_creditCardToken"
+                [(ngModel)]="visitorTrip.creditCardToken" required />
+            <div [hidden]="!(editForm.controls.creditCardToken?.dirty && editForm.controls.creditCardToken?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.creditCardToken?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitorTrip.creditCardExpiry" for="field_creditCardExpiry">Credit Card Expiry</label>
+            <div class="d-flex">
+                <input id="field_creditCardExpiry" type="datetime-local" class="form-control" name="creditCardExpiry" [(ngModel)]="visitorTrip.creditCardExpiry"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitorTrip.cardHolderName" for="field_cardHolderName">Card Holder Name</label>
+            <input type="text" class="form-control" name="cardHolderName" id="field_cardHolderName"
+                [(ngModel)]="visitorTrip.cardHolderName" required />
+            <div [hidden]="!(editForm.controls.cardHolderName?.dirty && editForm.controls.cardHolderName?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.cardHolderName?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitorTrip.createdDate" for="field_createdDate">Created Date</label>
+            <div class="d-flex">
+                <input id="field_createdDate" type="datetime-local" class="form-control" name="createdDate" [(ngModel)]="visitorTrip.createdDate"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitorTrip.matchLargeTX" for="field_matchLargeTX">Match Large TX</label>
+            <input type="checkbox" class="form-control" name="matchLargeTX" id="field_matchLargeTX"
+                [(ngModel)]="visitorTrip.matchLargeTX"  />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitorTrip.visitor" for="field_visitor">Visitor</label>
+            <select class="form-control" id="field_visitor" name="visitor" [(ngModel)]="visitorTrip.visitor" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="visitorOption.id === visitorTrip.visitor?.id ? visitorTrip.visitor : visitorOption" *ngFor="let visitorOption of visitors; trackBy: trackVisitorById">{{visitorOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

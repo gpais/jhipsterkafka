@@ -1,0 +1,16 @@
+{
+  "generator-jhipster": {
+    "appsFolders": [
+      "visitors",
+      "visitorsconsumer"
+    ],
+    "directoryPath": "../",
+    "monitoring": "no",
+    "serviceDiscoveryType": "eureka",
+    "adminPassword": "admin",
+    "jwtSecretKey": "7433bdc48f8ea8315b39476c9b94c051ef5c7f5b",
+    "dockerRepositoryName": "gpaishubid",
+    "dockerPushCommand": "docker push",
+    "enableRancherLoadBalancing": false
+  }
+}

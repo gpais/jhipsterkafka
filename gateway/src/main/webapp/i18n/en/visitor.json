@@ -1,0 +1,38 @@
+{
+    "gatewayApp": {
+        "visitor" : {
+            "home": {
+                "title": "Visitors",
+                "createLabel": "Create a new Visitor",
+                "createOrEditLabel": "Create or edit a Visitor"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Visitor {{ id }}?"
+            },
+            "detail": {
+                "title": "Visitor"
+            },
+            "surname": "Surname",
+            "forename": "Forename",
+            "address1": "Address 1",
+            "address2": "Address 2",
+            "address3": "Address 3",
+            "address4": "Address 4",
+            "postCode": "Post Code",
+            "countryId": "Country Id",
+            "telephoneNo": "Telephone No",
+            "emailAddress": "Email Address",
+            "passportNumber": "Passport Number",
+            "cards": "Cards",
+            "trip": "Trip",
+            "queries": "Queries"
+        }
+    },
+    "visitorsApp": {
+        "visitor" : {
+            "created": "A new Visitor is created with identifier {{ param }}",
+            "updated": "A Visitor is updated with identifier {{ param }}",
+            "deleted": "A Visitor is deleted with identifier {{ param }}"
+        }
+    }
+}

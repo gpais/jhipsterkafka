@@ -1,0 +1,43 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "card",
+            "otherEntityName": "visitorCardTransactions",
+            "otherEntityRelationshipName": "visitorCard"
+        },
+        {
+            "relationshipName": "visitor",
+            "otherEntityName": "visitor",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "tfscNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "registeredDate",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "termsAndConditions",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20171003114336",
+    "entityTableName": "visitor_card",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "microserviceName": "visitors"
+}

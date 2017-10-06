@@ -1,0 +1,83 @@
+
+<div *ngIf="visitorCardTransactions">
+    <h2><span jhiTranslate="gatewayApp.visitorCardTransactions.detail.title">Visitor Card Transactions</span> {{visitorCardTransactions.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="gatewayApp.visitorCardTransactions.retailerNo">Retailer No</span></dt>
+        <dd>
+            <span>{{visitorCardTransactions.retailerNo}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorCardTransactions.tfscNumber">Tfsc Number</span></dt>
+        <dd>
+            <span>{{visitorCardTransactions.tfscNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorCardTransactions.voucherNo">Voucher No</span></dt>
+        <dd>
+            <span>{{visitorCardTransactions.voucherNo}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorCardTransactions.creditCardNo">Credit Card No</span></dt>
+        <dd>
+            <span>{{visitorCardTransactions.creditCardNo}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorCardTransactions.creditCardExpiry">Credit Card Expiry</span></dt>
+        <dd>
+            <span>{{visitorCardTransactions.creditCardExpiry}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorCardTransactions.purchaseTime">Purchase Time</span></dt>
+        <dd>
+            <span>{{visitorCardTransactions.purchaseTime}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorCardTransactions.vatOff">Vat Off</span></dt>
+        <dd>
+            <span>{{visitorCardTransactions.vatOff}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorCardTransactions.vatAmount">Vat Amount</span></dt>
+        <dd>
+            <span>{{visitorCardTransactions.vatAmount}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorCardTransactions.grossAmount">Gross Amount</span></dt>
+        <dd>
+            <span>{{visitorCardTransactions.grossAmount}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorCardTransactions.refundAmount">Refund Amount</span></dt>
+        <dd>
+            <span>{{visitorCardTransactions.refundAmount}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorCardTransactions.vatRate">Vat Rate</span></dt>
+        <dd>
+            <span>{{visitorCardTransactions.vatRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorCardTransactions.status">Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'gatewayApp.TransactionStatus.' + visitorCardTransactions.status}}">{{visitorCardTransactions.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorCardTransactions.reason">Reason</span></dt>
+        <dd>
+            <span>{{visitorCardTransactions.reason}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorCardTransactions.uuid">Uuid</span></dt>
+        <dd>
+            <span>{{visitorCardTransactions.uuid}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorCardTransactions.visitorCard">Visitor Card</span></dt>
+        <dd>
+            <div *ngIf="visitorCardTransactions.visitorCard">
+                <a [routerLink]="['/visitor-card', visitorCardTransactions.visitorCard?.id]">{{visitorCardTransactions.visitorCard?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'visitor-card-transactions/'+ visitorCardTransactions.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

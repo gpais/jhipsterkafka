@@ -1,0 +1,83 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "location",
+            "otherEntityName": "location",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "transactions",
+            "otherEntityName": "retailersTransactions",
+            "otherEntityRelationshipName": "retailers"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "commissions",
+            "otherEntityName": "commissions",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "retailers"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "retailerNo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "contact1",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "contact2",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "contact3",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "contact4",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "contact5",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "taxAmount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "minTaxAmount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "vatNo",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171004075716",
+    "entityTableName": "retailers",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "microserviceName": "Retailers"
+}

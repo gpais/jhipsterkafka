@@ -1,0 +1,35 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "visitor",
+            "otherEntityName": "visitor",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "queryDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "queryDescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "processDate",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "salutation",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171003114340",
+    "entityTableName": "visitor_queries",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "microserviceName": "visitor"
+}

@@ -1,0 +1,67 @@
+
+<div *ngIf="visitorTrip">
+    <h2><span jhiTranslate="gatewayApp.visitorTrip.detail.title">Visitor Trip</span> {{visitorTrip.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="gatewayApp.visitorTrip.locationCode">Location Code</span></dt>
+        <dd>
+            <span>{{visitorTrip.locationCode}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorTrip.dateEntry">Date Entry</span></dt>
+        <dd>
+            <span>{{visitorTrip.dateEntry | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorTrip.dateExit">Date Exit</span></dt>
+        <dd>
+            <span>{{visitorTrip.dateExit | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorTrip.flightNumber">Flight Number</span></dt>
+        <dd>
+            <span>{{visitorTrip.flightNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorTrip.creditCardType">Credit Card Type</span></dt>
+        <dd>
+            <span>{{visitorTrip.creditCardType}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorTrip.creditCardToken">Credit Card Token</span></dt>
+        <dd>
+            <span>{{visitorTrip.creditCardToken}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorTrip.creditCardExpiry">Credit Card Expiry</span></dt>
+        <dd>
+            <span>{{visitorTrip.creditCardExpiry | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorTrip.cardHolderName">Card Holder Name</span></dt>
+        <dd>
+            <span>{{visitorTrip.cardHolderName}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorTrip.createdDate">Created Date</span></dt>
+        <dd>
+            <span>{{visitorTrip.createdDate | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorTrip.matchLargeTX">Match Large TX</span></dt>
+        <dd>
+            <span>{{visitorTrip.matchLargeTX}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorTrip.visitor">Visitor</span></dt>
+        <dd>
+            <div *ngIf="visitorTrip.visitor">
+                <a [routerLink]="['/visitor', visitorTrip.visitor?.id]">{{visitorTrip.visitor?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'visitor-trip/'+ visitorTrip.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

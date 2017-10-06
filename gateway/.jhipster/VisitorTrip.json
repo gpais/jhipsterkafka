@@ -1,0 +1,71 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "visitor",
+            "otherEntityName": "visitor",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "locationCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateEntry",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "dateExit",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "flightNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "creditCardType",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "creditCardToken",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "creditCardExpiry",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "cardHolderName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "matchLargeTX",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20171003114338",
+    "entityTableName": "visitor_trip",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "microserviceName": "visitors"
+}

@@ -1,0 +1,98 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myRetailersLabel" jhiTranslate="gatewayApp.retailers.home.createOrEditLabel">Create or edit a Retailers</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!retailers.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="retailers.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.retailers.retailerNo" for="field_retailerNo">Retailer No</label>
+            <input type="text" class="form-control" name="retailerNo" id="field_retailerNo"
+                [(ngModel)]="retailers.retailerNo" required />
+            <div [hidden]="!(editForm.controls.retailerNo?.dirty && editForm.controls.retailerNo?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.retailerNo?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.retailers.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="retailers.name"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.retailers.phone" for="field_phone">Phone</label>
+            <input type="text" class="form-control" name="phone" id="field_phone"
+                [(ngModel)]="retailers.phone"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.retailers.contact1" for="field_contact1">Contact 1</label>
+            <input type="text" class="form-control" name="contact1" id="field_contact1"
+                [(ngModel)]="retailers.contact1"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.retailers.contact2" for="field_contact2">Contact 2</label>
+            <input type="text" class="form-control" name="contact2" id="field_contact2"
+                [(ngModel)]="retailers.contact2"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.retailers.contact3" for="field_contact3">Contact 3</label>
+            <input type="text" class="form-control" name="contact3" id="field_contact3"
+                [(ngModel)]="retailers.contact3"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.retailers.contact4" for="field_contact4">Contact 4</label>
+            <input type="text" class="form-control" name="contact4" id="field_contact4"
+                [(ngModel)]="retailers.contact4"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.retailers.contact5" for="field_contact5">Contact 5</label>
+            <input type="text" class="form-control" name="contact5" id="field_contact5"
+                [(ngModel)]="retailers.contact5"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.retailers.taxAmount" for="field_taxAmount">Tax Amount</label>
+            <input type="number" class="form-control" name="taxAmount" id="field_taxAmount"
+                [(ngModel)]="retailers.taxAmount"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.retailers.minTaxAmount" for="field_minTaxAmount">Min Tax Amount</label>
+            <input type="number" class="form-control" name="minTaxAmount" id="field_minTaxAmount"
+                [(ngModel)]="retailers.minTaxAmount"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.retailers.email" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                [(ngModel)]="retailers.email"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.retailers.vatNo" for="field_vatNo">Vat No</label>
+            <input type="text" class="form-control" name="vatNo" id="field_vatNo"
+                [(ngModel)]="retailers.vatNo"  />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.retailers.location" for="field_location">Location</label>
+            <select class="form-control" id="field_location" name="location" [(ngModel)]="retailers.location" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="locationOption.id === retailers.location?.id ? retailers.location : locationOption" *ngFor="let locationOption of locations; trackBy: trackLocationById">{{locationOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

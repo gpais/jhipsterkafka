@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Commissions.
+    -->
+    <changeSet id="20171004075715-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="commissions_id"
+                                 baseTableName="commissions_retailers"
+                                 constraintName="fk_commissions_retailers_commissions_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commissions"/>
+        <addForeignKeyConstraint baseColumnNames="retailers_id"
+                                 baseTableName="commissions_retailers"
+                                 constraintName="fk_commissions_retailers_retailers_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="retailers"/>
+        
+    </changeSet>
+</databaseChangeLog>

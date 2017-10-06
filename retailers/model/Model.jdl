@@ -1,0 +1,85 @@
+entity Location{
+	address1 String
+	address2 String
+	address3 String
+	countyCode String
+	latitude String
+	longitude String
+	
+}
+
+entity Commissions{
+    description String
+	retailerCommission BigDecimal
+	tfsCommission BigDecimal 
+}
+
+entity Retailers {
+	retailerNo String required
+	name String 
+	phone String
+	contact1 String
+	contact2 String
+	contact3 String
+	contact4 String
+	contact5 String
+	taxAmount BigDecimal
+	minTaxAmount BigDecimal
+	email String
+	vatNo String
+}
+
+enum TransactionStatus {
+    NOT_MATCHED, MATCHED, SUSPENDED,SETTLED,REFUNDED
+}
+
+
+entity RetailersTransactions{
+	retailerNo       String   
+	tfscNumber       String   
+	voucherNo        String
+	creditCardNo     String 
+	creditCardExpiry String
+	purchaseTime     String
+	vatOff           String
+    vatAmount    Double  
+    grossAmount  Double  
+    refundAmount Double          
+    vatRate      Double
+    status       TransactionStatus
+    reason       String
+    uuid       String
+    hashCode   String 
+}
+
+entity Aggregate {
+	 aggregateId  String 
+	 type String
+	 version Integer
+	 sequenceNumber Integer
+	 data String
+}
+
+entity Snapshot {
+	 aggregateId  String 
+	 type String
+	 version Integer
+	 sequenceNumber Integer
+	 data String
+}
+
+
+relationship ManyToMany {
+	Commissions{retailers} to Retailers{commissions} 
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Location{retailers} to Retailers,
+	Retailers{transactions} to RetailersTransactions
+}
+
+paginate RetailersTransactions with pagination
+
+microservice * with Retailers
+

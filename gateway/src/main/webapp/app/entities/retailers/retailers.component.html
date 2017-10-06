@@ -1,0 +1,84 @@
+<div>
+    <h2>
+        <span jhiTranslate="gatewayApp.retailers.home.title">Retailers</span>
+        <button class="btn btn-primary float-right jh-create-entity create-retailers" [routerLink]="['/', { outlets: { popup: ['retailers-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="gatewayApp.retailers.home.createLabel">
+            Create new Retailers
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="retailers">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="gatewayApp.retailers.retailerNo">Retailer No</span></th>
+            <th><span jhiTranslate="gatewayApp.retailers.name">Name</span></th>
+            <th><span jhiTranslate="gatewayApp.retailers.phone">Phone</span></th>
+            <th><span jhiTranslate="gatewayApp.retailers.contact1">Contact 1</span></th>
+            <th><span jhiTranslate="gatewayApp.retailers.contact2">Contact 2</span></th>
+            <th><span jhiTranslate="gatewayApp.retailers.contact3">Contact 3</span></th>
+            <th><span jhiTranslate="gatewayApp.retailers.contact4">Contact 4</span></th>
+            <th><span jhiTranslate="gatewayApp.retailers.contact5">Contact 5</span></th>
+            <th><span jhiTranslate="gatewayApp.retailers.taxAmount">Tax Amount</span></th>
+            <th><span jhiTranslate="gatewayApp.retailers.minTaxAmount">Min Tax Amount</span></th>
+            <th><span jhiTranslate="gatewayApp.retailers.email">Email</span></th>
+            <th><span jhiTranslate="gatewayApp.retailers.vatNo">Vat No</span></th>
+            <th><span jhiTranslate="gatewayApp.retailers.location">Location</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let retailers of retailers ;trackBy: trackId">
+                <td><a [routerLink]="['../retailers', retailers.id ]">{{retailers.id}}</a></td>
+                <td>{{retailers.retailerNo}}</td>
+                <td>{{retailers.name}}</td>
+                <td>{{retailers.phone}}</td>
+                <td>{{retailers.contact1}}</td>
+                <td>{{retailers.contact2}}</td>
+                <td>{{retailers.contact3}}</td>
+                <td>{{retailers.contact4}}</td>
+                <td>{{retailers.contact5}}</td>
+                <td>{{retailers.taxAmount}}</td>
+                <td>{{retailers.minTaxAmount}}</td>
+                <td>{{retailers.email}}</td>
+                <td>{{retailers.vatNo}}</td>
+                <td>
+                    <div *ngIf="retailers.location">
+                        <a [routerLink]="['../location', retailers.location?.id ]" >{{retailers.location?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../retailers', retailers.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'retailers/'+ retailers.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'retailers/'+ retailers.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+version: '2'
+services:
+    retailers-postgresql:
+        image: postgres:9.6.5
+        # volumes:
+        #     - ~/volumes/jhipster/retailers/postgresql/:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=retailers
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432

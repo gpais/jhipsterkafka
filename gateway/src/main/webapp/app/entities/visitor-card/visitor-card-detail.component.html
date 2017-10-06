@@ -1,0 +1,39 @@
+
+<div *ngIf="visitorCard">
+    <h2><span jhiTranslate="gatewayApp.visitorCard.detail.title">Visitor Card</span> {{visitorCard.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="gatewayApp.visitorCard.tfscNumber">Tfsc Number</span></dt>
+        <dd>
+            <span>{{visitorCard.tfscNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorCard.registeredDate">Registered Date</span></dt>
+        <dd>
+            <span>{{visitorCard.registeredDate}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorCard.termsAndConditions">Terms And Conditions</span></dt>
+        <dd>
+            <span>{{visitorCard.termsAndConditions}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorCard.visitor">Visitor</span></dt>
+        <dd>
+            <div *ngIf="visitorCard.visitor">
+                <a [routerLink]="['/visitor', visitorCard.visitor?.id]">{{visitorCard.visitor?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'visitor-card/'+ visitorCard.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

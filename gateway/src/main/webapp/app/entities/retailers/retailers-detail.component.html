@@ -1,0 +1,75 @@
+
+<div *ngIf="retailers">
+    <h2><span jhiTranslate="gatewayApp.retailers.detail.title">Retailers</span> {{retailers.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="gatewayApp.retailers.retailerNo">Retailer No</span></dt>
+        <dd>
+            <span>{{retailers.retailerNo}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailers.name">Name</span></dt>
+        <dd>
+            <span>{{retailers.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailers.phone">Phone</span></dt>
+        <dd>
+            <span>{{retailers.phone}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailers.contact1">Contact 1</span></dt>
+        <dd>
+            <span>{{retailers.contact1}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailers.contact2">Contact 2</span></dt>
+        <dd>
+            <span>{{retailers.contact2}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailers.contact3">Contact 3</span></dt>
+        <dd>
+            <span>{{retailers.contact3}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailers.contact4">Contact 4</span></dt>
+        <dd>
+            <span>{{retailers.contact4}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailers.contact5">Contact 5</span></dt>
+        <dd>
+            <span>{{retailers.contact5}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailers.taxAmount">Tax Amount</span></dt>
+        <dd>
+            <span>{{retailers.taxAmount}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailers.minTaxAmount">Min Tax Amount</span></dt>
+        <dd>
+            <span>{{retailers.minTaxAmount}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailers.email">Email</span></dt>
+        <dd>
+            <span>{{retailers.email}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailers.vatNo">Vat No</span></dt>
+        <dd>
+            <span>{{retailers.vatNo}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailers.location">Location</span></dt>
+        <dd>
+            <div *ngIf="retailers.location">
+                <a [routerLink]="['/location', retailers.location?.id]">{{retailers.location?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'retailers/'+ retailers.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

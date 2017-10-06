@@ -1,0 +1,28 @@
+{
+    "gatewayApp": {
+        "commissions" : {
+            "home": {
+                "title": "Commissions",
+                "createLabel": "Create a new Commissions",
+                "createOrEditLabel": "Create or edit a Commissions"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Commissions {{ id }}?"
+            },
+            "detail": {
+                "title": "Commissions"
+            },
+            "description": "Description",
+            "retailerCommission": "Retailer Commission",
+            "tfsCommission": "Tfs Commission",
+            "retailers": "Retailers"
+        }
+    },
+    "retailersApp": {
+        "commissions" : {
+            "created": "A new Commissions is created with identifier {{ param }}",
+            "updated": "A Commissions is updated with identifier {{ param }}",
+            "deleted": "A Commissions is deleted with identifier {{ param }}"
+        }
+    }
+}

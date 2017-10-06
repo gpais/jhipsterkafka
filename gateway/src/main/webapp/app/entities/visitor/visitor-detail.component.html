@@ -1,0 +1,65 @@
+
+<div *ngIf="visitor">
+    <h2><span jhiTranslate="gatewayApp.visitor.detail.title">Visitor</span> {{visitor.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="gatewayApp.visitor.surname">Surname</span></dt>
+        <dd>
+            <span>{{visitor.surname}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitor.forename">Forename</span></dt>
+        <dd>
+            <span>{{visitor.forename}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitor.address1">Address 1</span></dt>
+        <dd>
+            <span>{{visitor.address1}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitor.address2">Address 2</span></dt>
+        <dd>
+            <span>{{visitor.address2}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitor.address3">Address 3</span></dt>
+        <dd>
+            <span>{{visitor.address3}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitor.address4">Address 4</span></dt>
+        <dd>
+            <span>{{visitor.address4}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitor.postCode">Post Code</span></dt>
+        <dd>
+            <span>{{visitor.postCode}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitor.countryId">Country Id</span></dt>
+        <dd>
+            <span>{{visitor.countryId}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitor.telephoneNo">Telephone No</span></dt>
+        <dd>
+            <span>{{visitor.telephoneNo}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitor.emailAddress">Email Address</span></dt>
+        <dd>
+            <span>{{visitor.emailAddress}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitor.passportNumber">Passport Number</span></dt>
+        <dd>
+            <span>{{visitor.passportNumber}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'visitor/'+ visitor.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

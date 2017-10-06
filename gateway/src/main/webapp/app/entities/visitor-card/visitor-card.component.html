@@ -1,0 +1,66 @@
+<div>
+    <h2>
+        <span jhiTranslate="gatewayApp.visitorCard.home.title">Visitor Cards</span>
+        <button class="btn btn-primary float-right jh-create-entity create-visitor-card" [routerLink]="['/', { outlets: { popup: ['visitor-card-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="gatewayApp.visitorCard.home.createLabel">
+            Create new Visitor Card
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="visitorCards">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="gatewayApp.visitorCard.tfscNumber">Tfsc Number</span></th>
+            <th><span jhiTranslate="gatewayApp.visitorCard.registeredDate">Registered Date</span></th>
+            <th><span jhiTranslate="gatewayApp.visitorCard.termsAndConditions">Terms And Conditions</span></th>
+            <th><span jhiTranslate="gatewayApp.visitorCard.visitor">Visitor</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let visitorCard of visitorCards ;trackBy: trackId">
+                <td><a [routerLink]="['../visitor-card', visitorCard.id ]">{{visitorCard.id}}</a></td>
+                <td>{{visitorCard.tfscNumber}}</td>
+                <td>{{visitorCard.registeredDate}}</td>
+                <td>{{visitorCard.termsAndConditions}}</td>
+                <td>
+                    <div *ngIf="visitorCard.visitor">
+                        <a [routerLink]="['../visitor', visitorCard.visitor?.id ]" >{{visitorCard.visitor?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../visitor-card', visitorCard.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'visitor-card/'+ visitorCard.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'visitor-card/'+ visitorCard.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

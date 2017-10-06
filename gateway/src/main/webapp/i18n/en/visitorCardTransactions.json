@@ -1,0 +1,39 @@
+{
+    "gatewayApp": {
+        "visitorCardTransactions" : {
+            "home": {
+                "title": "Visitor Card Transactions",
+                "createLabel": "Create a new Visitor Card Transactions",
+                "createOrEditLabel": "Create or edit a Visitor Card Transactions"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Visitor Card Transactions {{ id }}?"
+            },
+            "detail": {
+                "title": "Visitor Card Transactions"
+            },
+            "retailerNo": "Retailer No",
+            "tfscNumber": "Tfsc Number",
+            "voucherNo": "Voucher No",
+            "creditCardNo": "Credit Card No",
+            "creditCardExpiry": "Credit Card Expiry",
+            "purchaseTime": "Purchase Time",
+            "vatOff": "Vat Off",
+            "vatAmount": "Vat Amount",
+            "grossAmount": "Gross Amount",
+            "refundAmount": "Refund Amount",
+            "vatRate": "Vat Rate",
+            "status": "Status",
+            "reason": "Reason",
+            "uuid": "Uuid",
+            "visitorCard": "Visitor Card"
+        }
+    },
+    "visitorsApp": {
+        "visitorCardTransactions" : {
+            "created": "A new Visitor Card Transactions is created with identifier {{ param }}",
+            "updated": "A Visitor Card Transactions is updated with identifier {{ param }}",
+            "deleted": "A Visitor Card Transactions is deleted with identifier {{ param }}"
+        }
+    }
+}

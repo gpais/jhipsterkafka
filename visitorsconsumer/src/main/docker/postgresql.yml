@@ -1,0 +1,11 @@
+version: '2'
+services:
+    visitors-postgresql:
+        image: postgres:9.6.5
+        # volumes:
+        #     - ~/volumes/jhipster/visitors/postgresql/:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=visitors
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432

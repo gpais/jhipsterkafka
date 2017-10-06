@@ -12,8 +12,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.*;
+import org.springframework.boot.context.embedded.tomcat.TomcatConnectorCustomizer;
+import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.undertow.UndertowEmbeddedServletContainerFactory;
 import io.undertow.UndertowOptions;
+import io.undertow.server.Connectors;
+
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +25,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 
 import java.util.*;
 import javax.servlet.*;
@@ -47,6 +52,8 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
         this.jHipsterProperties = jHipsterProperties;
         this.hazelcastInstance = hazelcastInstance;
     }
+    
+    
 
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
@@ -69,7 +76,6 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
         // CloudFoundry issue, see https://github.com/cloudfoundry/gorouter/issues/64
         mappings.add("json", "text/html;charset=utf-8");
         container.setMimeMappings(mappings);
-
         /*
          * Enable HTTP/2 for Undertow - https://twitter.com/ankinson/status/829256167700492288
          * HTTP/2 requires HTTPS, so HTTP requests will fallback to HTTP/1.1.
@@ -84,7 +90,22 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
                     builder.setServerOption(UndertowOptions.ENABLE_HTTP2, true));
         }
     }
-
+//    @Bean
+//    public TomcatEmbeddedServletContainerFactory containerFactory() {
+//        TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
+//         factory.addConnectorCustomizers(new TomcatConnectorCustomizer() {
+//            @Override
+//            public void customize(Connectors connector) {
+//             ((AbstractHttp11Protocol<?>) connector.getProtocolHandler()).setMaxSwallowSize(-1);
+//            }
+//         });
+//         return factory;
+//    }
+//    
+//    @Bean
+//    public StandardServletMultipartResolver multipartResolver() {
+//        return new StandardServletMultipartResolver();
+//    }
     /**
      * Initializes Metrics.
      */

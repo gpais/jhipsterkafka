@@ -1,0 +1,10 @@
+# Common configuration shared between all applications
+configserver:
+    name: Docker JHipster Registry
+    status: Connected to the JHipster Registry running in Rancher
+
+jhipster:
+    security:
+        authentication:
+            jwt:
+                secret: 25035962c341c1c62f4f9998afc252658e867f97

@@ -1,0 +1,7 @@
+version: '2'
+services:
+    visitors-app:
+        scale: 1
+    visitors-postgresql:
+        scale: 1
+

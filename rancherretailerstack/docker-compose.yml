@@ -1,0 +1,19 @@
+version: '2'
+services:
+    retailers-app:
+        image: localhost/retailers
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+            - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://retailers-postgresql:5432/retailers
+            - JHIPSTER_SLEEP=0
+            - JHIPSTER_REGISTRY_PASSWORD=admin
+            - SPRING_DB_USERNAME=retailers
+            - SPRING_DB_PASSWORD=password
+    
+    retailers-postgresql:
+        image: postgres:9.6.5
+        environment:
+            - POSTGRES_USER=retailers
+            - POSTGRES_PASSWORD=password

@@ -1,0 +1,83 @@
+
+<div *ngIf="retailersTransactions">
+    <h2><span jhiTranslate="gatewayApp.retailersTransactions.detail.title">Retailers Transactions</span> {{retailersTransactions.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="gatewayApp.retailersTransactions.retailerNo">Retailer No</span></dt>
+        <dd>
+            <span>{{retailersTransactions.retailerNo}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailersTransactions.tfscNumber">Tfsc Number</span></dt>
+        <dd>
+            <span>{{retailersTransactions.tfscNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailersTransactions.voucherNo">Voucher No</span></dt>
+        <dd>
+            <span>{{retailersTransactions.voucherNo}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailersTransactions.creditCardNo">Credit Card No</span></dt>
+        <dd>
+            <span>{{retailersTransactions.creditCardNo}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailersTransactions.creditCardExpiry">Credit Card Expiry</span></dt>
+        <dd>
+            <span>{{retailersTransactions.creditCardExpiry}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailersTransactions.purchaseTime">Purchase Time</span></dt>
+        <dd>
+            <span>{{retailersTransactions.purchaseTime}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailersTransactions.vatOff">Vat Off</span></dt>
+        <dd>
+            <span>{{retailersTransactions.vatOff}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailersTransactions.vatAmount">Vat Amount</span></dt>
+        <dd>
+            <span>{{retailersTransactions.vatAmount}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailersTransactions.grossAmount">Gross Amount</span></dt>
+        <dd>
+            <span>{{retailersTransactions.grossAmount}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailersTransactions.refundAmount">Refund Amount</span></dt>
+        <dd>
+            <span>{{retailersTransactions.refundAmount}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailersTransactions.vatRate">Vat Rate</span></dt>
+        <dd>
+            <span>{{retailersTransactions.vatRate}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailersTransactions.status">Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'gatewayApp.TransactionStatus.' + retailersTransactions.status}}">{{retailersTransactions.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailersTransactions.reason">Reason</span></dt>
+        <dd>
+            <span>{{retailersTransactions.reason}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailersTransactions.uuid">Uuid</span></dt>
+        <dd>
+            <span>{{retailersTransactions.uuid}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.retailersTransactions.retailers">Retailers</span></dt>
+        <dd>
+            <div *ngIf="retailersTransactions.retailers">
+                <a [routerLink]="['/retailers', retailersTransactions.retailers?.id]">{{retailersTransactions.retailers?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'retailers-transactions/'+ retailersTransactions.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,96 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "cards",
+            "otherEntityName": "visitorCard",
+            "otherEntityRelationshipName": "visitor"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "trip",
+            "otherEntityName": "visitorTrip",
+            "otherEntityRelationshipName": "visitor"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "queries",
+            "otherEntityName": "visitorQueries",
+            "otherEntityRelationshipName": "visitor"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "surname",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "forename",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "address1",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "address2",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "address3",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "address4",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "postCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "countryId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "telephoneNo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "emailAddress",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "passportNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20171003114337",
+    "entityTableName": "visitor",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "microserviceName": "visitor"
+}

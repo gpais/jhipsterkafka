@@ -1,0 +1,29 @@
+{
+    "gatewayApp": {
+        "visitorQueries" : {
+            "home": {
+                "title": "Visitor Queries",
+                "createLabel": "Create a new Visitor Queries",
+                "createOrEditLabel": "Create or edit a Visitor Queries"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Visitor Queries {{ id }}?"
+            },
+            "detail": {
+                "title": "Visitor Queries"
+            },
+            "queryDate": "Query Date",
+            "queryDescription": "Query Description",
+            "processDate": "Process Date",
+            "salutation": "Salutation",
+            "visitor": "Visitor"
+        }
+    },
+    "visitorsApp": {
+        "visitorQueries" : {
+            "created": "A new Visitor Queries is created with identifier {{ param }}",
+            "updated": "A Visitor Queries is updated with identifier {{ param }}",
+            "deleted": "A Visitor Queries is deleted with identifier {{ param }}"
+        }
+    }
+}

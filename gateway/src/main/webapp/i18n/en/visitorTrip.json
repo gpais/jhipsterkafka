@@ -1,0 +1,35 @@
+{
+    "gatewayApp": {
+        "visitorTrip" : {
+            "home": {
+                "title": "Visitor Trips",
+                "createLabel": "Create a new Visitor Trip",
+                "createOrEditLabel": "Create or edit a Visitor Trip"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Visitor Trip {{ id }}?"
+            },
+            "detail": {
+                "title": "Visitor Trip"
+            },
+            "locationCode": "Location Code",
+            "dateEntry": "Date Entry",
+            "dateExit": "Date Exit",
+            "flightNumber": "Flight Number",
+            "creditCardType": "Credit Card Type",
+            "creditCardToken": "Credit Card Token",
+            "creditCardExpiry": "Credit Card Expiry",
+            "cardHolderName": "Card Holder Name",
+            "createdDate": "Created Date",
+            "matchLargeTX": "Match Large TX",
+            "visitor": "Visitor"
+        }
+    },
+    "visitorsApp": {
+        "visitorTrip" : {
+            "created": "A new Visitor Trip is created with identifier {{ param }}",
+            "updated": "A Visitor Trip is updated with identifier {{ param }}",
+            "deleted": "A Visitor Trip is deleted with identifier {{ param }}"
+        }
+    }
+}

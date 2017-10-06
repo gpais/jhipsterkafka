@@ -1,0 +1,74 @@
+entity VisitorCard{
+	tfscNumber      String   required
+	registeredDate   String  
+    termsAndConditions   Boolean   required
+}
+
+entity Visitor{
+	surname         String   required
+	forename        String   required
+	address1        String   required
+	address2        String  
+	address3        String   
+	address4        String   
+	postCode        String   
+	countryId        String   required
+	telephoneNo      String   required
+	emailAddress     String   required
+	passportNumber   String   required
+}
+
+entity VisitorTrip{
+	locationCode         String  
+	dateEntry            ZonedDateTime 
+	dateExit             ZonedDateTime
+	flightNumber         String   required
+	creditCardType       String   required
+	creditCardToken      String   required
+	creditCardExpiry     ZonedDateTime
+	cardHolderName       String   required
+	createdDate          ZonedDateTime
+	matchLargeTX         Boolean
+}
+
+entity VisitorCardTransactions{
+	retailerNo       String   
+	tfscNumber       String   
+	voucherNo        String
+	creditCardNo     String 
+	creditCardExpiry String
+	purchaseTime     String
+	vatOff           String
+    vatAmount    Double  
+    grossAmount  Double  
+    refundAmount Double          
+    vatRate      Double
+    status       TransactionStatus
+    reason       String
+    uuid       String
+}
+
+
+enum TransactionStatus {
+    NOT_MATCHED, MATCHED, SUSPENDED,SETTLED,REFUNDED
+}
+
+
+
+entity VisitorQueries {
+	queryDate   ZonedDateTime   
+	queryDescription String 
+	processDate String 
+	salutation String 
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Visitor{cards} to VisitorCard,
+    Visitor{trip} to VisitorTrip,
+	Visitor{queries} to VisitorQueries,
+    VisitorCard{card} to VisitorCardTransactions
+	
+}
+
+microservice * with visitor

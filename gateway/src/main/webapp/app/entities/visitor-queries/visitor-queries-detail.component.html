@@ -1,0 +1,43 @@
+
+<div *ngIf="visitorQueries">
+    <h2><span jhiTranslate="gatewayApp.visitorQueries.detail.title">Visitor Queries</span> {{visitorQueries.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="gatewayApp.visitorQueries.queryDate">Query Date</span></dt>
+        <dd>
+            <span>{{visitorQueries.queryDate | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorQueries.queryDescription">Query Description</span></dt>
+        <dd>
+            <span>{{visitorQueries.queryDescription}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorQueries.processDate">Process Date</span></dt>
+        <dd>
+            <span>{{visitorQueries.processDate}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorQueries.salutation">Salutation</span></dt>
+        <dd>
+            <span>{{visitorQueries.salutation}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.visitorQueries.visitor">Visitor</span></dt>
+        <dd>
+            <div *ngIf="visitorQueries.visitor">
+                <a [routerLink]="['/visitor', visitorQueries.visitor?.id]">{{visitorQueries.visitor?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'visitor-queries/'+ visitorQueries.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

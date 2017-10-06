@@ -7,7 +7,9 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,9 +94,11 @@ public class ProducerResource{
             return new ResponseEntity("please select a file!", HttpStatus.OK);
         }
       try {
-    	  ParseUtils.parse(uploadfile)
+    	 ParseUtils.parse(uploadfile)
     	  .map(line->line.split(" "))
     	  .map(splitedLine->{
+  	        log.info("Splited line parsed !" +splitedLine);
+
     		  Transaction transaction = new Transaction();
     		  transaction.setUuid(UUID.randomUUID().toString());
     		  transaction.setRetailerNo(splitedLine[0]);
@@ -105,14 +109,14 @@ public class ProducerResource{
     		  transaction.setPurchaseTime(splitedLine[5]);
     		  transaction.setVatOff(splitedLine[6]);
     		  transaction.setGrossAmount(Double.valueOf(splitedLine[7]));
-    		  transaction.setGrossAmount(Double.valueOf(splitedLine[8]));
+    		  transaction.setVatAmount(Double.valueOf(splitedLine[8]));
     		  return transaction;
     		  
     	  })
-    	  .forEach(a->{
-    	        log.info("Single line parsed !" +a.getUuid());
-    	        
-    	  });
+    	 .forEach(a->{
+             channel.send(MessageBuilder.withPayload(a).setHeader("correlation_id", a.getUuid()).build());
+
+    	 });
 //    	 byte[] bytes = uploadfile
         // Get the filename and build the local file path
         String filename = uploadfile.getOriginalFilename();

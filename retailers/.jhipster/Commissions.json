@@ -1,0 +1,33 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "commissions",
+            "relationshipName": "retailers",
+            "otherEntityName": "retailers",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "retailerCommission",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "tfsCommission",
+            "fieldType": "BigDecimal"
+        }
+    ],
+    "changelogDate": "20171004075715",
+    "entityTableName": "commissions",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "microserviceName": "Retailers"
+}

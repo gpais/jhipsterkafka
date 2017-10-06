@@ -94,7 +94,7 @@
         <validation-api.version>1.1.0.Final</validation-api.version>
         <yarn.version>v0.27.5</yarn.version>
         <yarn.version>v0.27.5</yarn.version>
-        <docker.repo>gpaishubid</docker.repo>
+        <docker.repo>10.120.13.75:45000</docker.repo>
     </properties>
 
     <dependencyManagement>

@@ -8,6 +8,15 @@
             "entities": {
                 "main": "Entities",
                 "transaction": "Transaction",
+                "commissions": "Commissions",
+                "retailers": "Retailers",
+                "location": "Location",
+                "retailersTransactions": "Retailers Transactions",
+                "visitor": "Visitor",
+                "visitorCard": "Visitor Card",
+                "visitorCardTransactions": "Visitor Card Transactions",
+                "visitorQueries": "Visitor Queries",
+                "visitorTrip": "Visitor Trip",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

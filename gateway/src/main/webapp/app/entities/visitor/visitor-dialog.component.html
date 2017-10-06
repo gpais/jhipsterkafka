@@ -1,0 +1,122 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myVisitorLabel" jhiTranslate="gatewayApp.visitor.home.createOrEditLabel">Create or edit a Visitor</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!visitor.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="visitor.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitor.surname" for="field_surname">Surname</label>
+            <input type="text" class="form-control" name="surname" id="field_surname"
+                [(ngModel)]="visitor.surname" required />
+            <div [hidden]="!(editForm.controls.surname?.dirty && editForm.controls.surname?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.surname?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitor.forename" for="field_forename">Forename</label>
+            <input type="text" class="form-control" name="forename" id="field_forename"
+                [(ngModel)]="visitor.forename" required />
+            <div [hidden]="!(editForm.controls.forename?.dirty && editForm.controls.forename?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.forename?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitor.address1" for="field_address1">Address 1</label>
+            <input type="text" class="form-control" name="address1" id="field_address1"
+                [(ngModel)]="visitor.address1" required />
+            <div [hidden]="!(editForm.controls.address1?.dirty && editForm.controls.address1?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.address1?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitor.address2" for="field_address2">Address 2</label>
+            <input type="text" class="form-control" name="address2" id="field_address2"
+                [(ngModel)]="visitor.address2"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitor.address3" for="field_address3">Address 3</label>
+            <input type="text" class="form-control" name="address3" id="field_address3"
+                [(ngModel)]="visitor.address3"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitor.address4" for="field_address4">Address 4</label>
+            <input type="text" class="form-control" name="address4" id="field_address4"
+                [(ngModel)]="visitor.address4"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitor.postCode" for="field_postCode">Post Code</label>
+            <input type="text" class="form-control" name="postCode" id="field_postCode"
+                [(ngModel)]="visitor.postCode"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitor.countryId" for="field_countryId">Country Id</label>
+            <input type="text" class="form-control" name="countryId" id="field_countryId"
+                [(ngModel)]="visitor.countryId" required />
+            <div [hidden]="!(editForm.controls.countryId?.dirty && editForm.controls.countryId?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.countryId?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitor.telephoneNo" for="field_telephoneNo">Telephone No</label>
+            <input type="text" class="form-control" name="telephoneNo" id="field_telephoneNo"
+                [(ngModel)]="visitor.telephoneNo" required />
+            <div [hidden]="!(editForm.controls.telephoneNo?.dirty && editForm.controls.telephoneNo?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.telephoneNo?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitor.emailAddress" for="field_emailAddress">Email Address</label>
+            <input type="text" class="form-control" name="emailAddress" id="field_emailAddress"
+                [(ngModel)]="visitor.emailAddress" required />
+            <div [hidden]="!(editForm.controls.emailAddress?.dirty && editForm.controls.emailAddress?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.emailAddress?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.visitor.passportNumber" for="field_passportNumber">Passport Number</label>
+            <input type="text" class="form-control" name="passportNumber" id="field_passportNumber"
+                [(ngModel)]="visitor.passportNumber" required />
+            <div [hidden]="!(editForm.controls.passportNumber?.dirty && editForm.controls.passportNumber?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.passportNumber?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

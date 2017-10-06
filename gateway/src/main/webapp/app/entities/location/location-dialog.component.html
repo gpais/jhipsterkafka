@@ -1,0 +1,55 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myLocationLabel" jhiTranslate="gatewayApp.location.home.createOrEditLabel">Create or edit a Location</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!location.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="location.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.location.address1" for="field_address1">Address 1</label>
+            <input type="text" class="form-control" name="address1" id="field_address1"
+                [(ngModel)]="location.address1"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.location.address2" for="field_address2">Address 2</label>
+            <input type="text" class="form-control" name="address2" id="field_address2"
+                [(ngModel)]="location.address2"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.location.address3" for="field_address3">Address 3</label>
+            <input type="text" class="form-control" name="address3" id="field_address3"
+                [(ngModel)]="location.address3"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.location.countyCode" for="field_countyCode">County Code</label>
+            <input type="text" class="form-control" name="countyCode" id="field_countyCode"
+                [(ngModel)]="location.countyCode"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.location.latitude" for="field_latitude">Latitude</label>
+            <input type="text" class="form-control" name="latitude" id="field_latitude"
+                [(ngModel)]="location.latitude"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.location.longitude" for="field_longitude">Longitude</label>
+            <input type="text" class="form-control" name="longitude" id="field_longitude"
+                [(ngModel)]="location.longitude"  />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

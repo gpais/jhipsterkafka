@@ -1,0 +1,39 @@
+
+<div *ngIf="commissions">
+    <h2><span jhiTranslate="gatewayApp.commissions.detail.title">Commissions</span> {{commissions.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="gatewayApp.commissions.description">Description</span></dt>
+        <dd>
+            <span>{{commissions.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.commissions.retailerCommission">Retailer Commission</span></dt>
+        <dd>
+            <span>{{commissions.retailerCommission}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.commissions.tfsCommission">Tfs Commission</span></dt>
+        <dd>
+            <span>{{commissions.tfsCommission}}</span>
+        </dd>
+        <dt><span jhiTranslate="gatewayApp.commissions.retailers">Retailers</span></dt>
+        <dd>
+            <span *ngFor="let retailers of commissions.retailers; let last = last">
+                <a [routerLink]="['/retailers', retailers?.id ]">{{retailers.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'commissions/'+ commissions.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

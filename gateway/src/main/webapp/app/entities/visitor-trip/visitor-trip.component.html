@@ -1,0 +1,80 @@
+<div>
+    <h2>
+        <span jhiTranslate="gatewayApp.visitorTrip.home.title">Visitor Trips</span>
+        <button class="btn btn-primary float-right jh-create-entity create-visitor-trip" [routerLink]="['/', { outlets: { popup: ['visitor-trip-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="gatewayApp.visitorTrip.home.createLabel">
+            Create new Visitor Trip
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="visitorTrips">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="gatewayApp.visitorTrip.locationCode">Location Code</span></th>
+            <th><span jhiTranslate="gatewayApp.visitorTrip.dateEntry">Date Entry</span></th>
+            <th><span jhiTranslate="gatewayApp.visitorTrip.dateExit">Date Exit</span></th>
+            <th><span jhiTranslate="gatewayApp.visitorTrip.flightNumber">Flight Number</span></th>
+            <th><span jhiTranslate="gatewayApp.visitorTrip.creditCardType">Credit Card Type</span></th>
+            <th><span jhiTranslate="gatewayApp.visitorTrip.creditCardToken">Credit Card Token</span></th>
+            <th><span jhiTranslate="gatewayApp.visitorTrip.creditCardExpiry">Credit Card Expiry</span></th>
+            <th><span jhiTranslate="gatewayApp.visitorTrip.cardHolderName">Card Holder Name</span></th>
+            <th><span jhiTranslate="gatewayApp.visitorTrip.createdDate">Created Date</span></th>
+            <th><span jhiTranslate="gatewayApp.visitorTrip.matchLargeTX">Match Large TX</span></th>
+            <th><span jhiTranslate="gatewayApp.visitorTrip.visitor">Visitor</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let visitorTrip of visitorTrips ;trackBy: trackId">
+                <td><a [routerLink]="['../visitor-trip', visitorTrip.id ]">{{visitorTrip.id}}</a></td>
+                <td>{{visitorTrip.locationCode}}</td>
+                <td>{{visitorTrip.dateEntry | date:'medium'}}</td>
+                <td>{{visitorTrip.dateExit | date:'medium'}}</td>
+                <td>{{visitorTrip.flightNumber}}</td>
+                <td>{{visitorTrip.creditCardType}}</td>
+                <td>{{visitorTrip.creditCardToken}}</td>
+                <td>{{visitorTrip.creditCardExpiry | date:'medium'}}</td>
+                <td>{{visitorTrip.cardHolderName}}</td>
+                <td>{{visitorTrip.createdDate | date:'medium'}}</td>
+                <td>{{visitorTrip.matchLargeTX}}</td>
+                <td>
+                    <div *ngIf="visitorTrip.visitor">
+                        <a [routerLink]="['../visitor', visitorTrip.visitor?.id ]" >{{visitorTrip.visitor?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../visitor-trip', visitorTrip.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'visitor-trip/'+ visitorTrip.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'visitor-trip/'+ visitorTrip.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myCommissionsLabel" jhiTranslate="gatewayApp.commissions.home.createOrEditLabel">Create or edit a Commissions</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!commissions.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="commissions.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.commissions.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="commissions.description"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.commissions.retailerCommission" for="field_retailerCommission">Retailer Commission</label>
+            <input type="number" class="form-control" name="retailerCommission" id="field_retailerCommission"
+                [(ngModel)]="commissions.retailerCommission"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="gatewayApp.commissions.tfsCommission" for="field_tfsCommission">Tfs Commission</label>
+            <input type="number" class="form-control" name="tfsCommission" id="field_tfsCommission"
+                [(ngModel)]="commissions.tfsCommission"  />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="gatewayApp.commissions.retailers" for="field_retailers">Retailers</label>
+            <select class="form-control" id="field_retailers" multiple name="retailers" [(ngModel)]="commissions.retailers">
+                <option [ngValue]="getSelected(commissions.retailers, retailersOption)" *ngFor="let retailersOption of retailers; trackBy: trackRetailersById">{{retailersOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

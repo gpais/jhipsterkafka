@@ -38,13 +38,13 @@ ribbon:
     eureka:
         enabled: true
 # See https://github.com/Netflix/Hystrix/wiki/Configuration
-#hystrix:
-#    command:
-#        default:
-#            execution:
-#                isolation:
-#                    thread:
-#                        timeoutInMilliseconds: 10000
+hystrix:
+    command:
+        default:
+            execution:
+                isolation:
+                    thread:
+                        timeoutInMilliseconds: 20000
 
 management:
     security:
@@ -84,6 +84,7 @@ security:
 
 server:
     session:
+        timeout: 30 
         cookie:
             http-only: true
 

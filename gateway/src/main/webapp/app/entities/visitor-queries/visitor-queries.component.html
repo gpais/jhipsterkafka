@@ -1,0 +1,68 @@
+<div>
+    <h2>
+        <span jhiTranslate="gatewayApp.visitorQueries.home.title">Visitor Queries</span>
+        <button class="btn btn-primary float-right jh-create-entity create-visitor-queries" [routerLink]="['/', { outlets: { popup: ['visitor-queries-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="gatewayApp.visitorQueries.home.createLabel">
+            Create new Visitor Queries
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="visitorQueries">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="gatewayApp.visitorQueries.queryDate">Query Date</span></th>
+            <th><span jhiTranslate="gatewayApp.visitorQueries.queryDescription">Query Description</span></th>
+            <th><span jhiTranslate="gatewayApp.visitorQueries.processDate">Process Date</span></th>
+            <th><span jhiTranslate="gatewayApp.visitorQueries.salutation">Salutation</span></th>
+            <th><span jhiTranslate="gatewayApp.visitorQueries.visitor">Visitor</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let visitorQueries of visitorQueries ;trackBy: trackId">
+                <td><a [routerLink]="['../visitor-queries', visitorQueries.id ]">{{visitorQueries.id}}</a></td>
+                <td>{{visitorQueries.queryDate | date:'medium'}}</td>
+                <td>{{visitorQueries.queryDescription}}</td>
+                <td>{{visitorQueries.processDate}}</td>
+                <td>{{visitorQueries.salutation}}</td>
+                <td>
+                    <div *ngIf="visitorQueries.visitor">
+                        <a [routerLink]="['../visitor', visitorQueries.visitor?.id ]" >{{visitorQueries.visitor?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../visitor-queries', visitorQueries.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'visitor-queries/'+ visitorQueries.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'visitor-queries/'+ visitorQueries.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

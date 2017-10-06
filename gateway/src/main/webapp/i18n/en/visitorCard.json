@@ -1,0 +1,29 @@
+{
+    "gatewayApp": {
+        "visitorCard" : {
+            "home": {
+                "title": "Visitor Cards",
+                "createLabel": "Create a new Visitor Card",
+                "createOrEditLabel": "Create or edit a Visitor Card"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Visitor Card {{ id }}?"
+            },
+            "detail": {
+                "title": "Visitor Card"
+            },
+            "tfscNumber": "Tfsc Number",
+            "registeredDate": "Registered Date",
+            "termsAndConditions": "Terms And Conditions",
+            "card": "Card",
+            "visitor": "Visitor"
+        }
+    },
+    "visitorsApp": {
+        "visitorCard" : {
+            "created": "A new Visitor Card is created with identifier {{ param }}",
+            "updated": "A Visitor Card is updated with identifier {{ param }}",
+            "deleted": "A Visitor Card is deleted with identifier {{ param }}"
+        }
+    }
+}

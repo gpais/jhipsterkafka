@@ -1,0 +1,31 @@
+{
+    "gatewayApp": {
+        "location" : {
+            "home": {
+                "title": "Locations",
+                "createLabel": "Create a new Location",
+                "createOrEditLabel": "Create or edit a Location"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Location {{ id }}?"
+            },
+            "detail": {
+                "title": "Location"
+            },
+            "address1": "Address 1",
+            "address2": "Address 2",
+            "address3": "Address 3",
+            "countyCode": "County Code",
+            "latitude": "Latitude",
+            "longitude": "Longitude",
+            "retailers": "Retailers"
+        }
+    },
+    "retailersApp": {
+        "location" : {
+            "created": "A new Location is created with identifier {{ param }}",
+            "updated": "A Location is updated with identifier {{ param }}",
+            "deleted": "A Location is deleted with identifier {{ param }}"
+        }
+    }
+}

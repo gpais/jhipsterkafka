@@ -1,0 +1,76 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "visitorCard",
+            "otherEntityName": "visitorCard",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "retailerNo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tfscNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "voucherNo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "creditCardNo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "creditCardExpiry",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "purchaseTime",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "vatOff",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "vatAmount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "grossAmount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "refundAmount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "vatRate",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "TransactionStatus",
+            "fieldValues": "NOT_MATCHED,MATCHED,SUSPENDED,SETTLED,REFUNDED"
+        },
+        {
+            "fieldName": "reason",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "uuid",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171003114339",
+    "entityTableName": "visitor_card_transactions",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "microserviceName": "visitors"
+}

@@ -1,0 +1,39 @@
+{
+    "gatewayApp": {
+        "retailersTransactions" : {
+            "home": {
+                "title": "Retailers Transactions",
+                "createLabel": "Create a new Retailers Transactions",
+                "createOrEditLabel": "Create or edit a Retailers Transactions"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Retailers Transactions {{ id }}?"
+            },
+            "detail": {
+                "title": "Retailers Transactions"
+            },
+            "retailerNo": "Retailer No",
+            "tfscNumber": "Tfsc Number",
+            "voucherNo": "Voucher No",
+            "creditCardNo": "Credit Card No",
+            "creditCardExpiry": "Credit Card Expiry",
+            "purchaseTime": "Purchase Time",
+            "vatOff": "Vat Off",
+            "vatAmount": "Vat Amount",
+            "grossAmount": "Gross Amount",
+            "refundAmount": "Refund Amount",
+            "vatRate": "Vat Rate",
+            "status": "Status",
+            "reason": "Reason",
+            "uuid": "Uuid",
+            "retailers": "Retailers"
+        }
+    },
+    "retailersApp": {
+        "retailersTransactions" : {
+            "created": "A new Retailers Transactions is created with identifier {{ param }}",
+            "updated": "A Retailers Transactions is updated with identifier {{ param }}",
+            "deleted": "A Retailers Transactions is deleted with identifier {{ param }}"
+        }
+    }
+}
